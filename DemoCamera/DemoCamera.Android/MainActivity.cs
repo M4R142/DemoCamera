@@ -14,6 +14,9 @@ namespace DemoCamera.Droid
         {
             base.OnCreate(savedInstanceState);
 
+            // Inicializar el plugin
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
@@ -21,7 +24,8 @@ namespace DemoCamera.Droid
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
+            // Permisos necesarios para el uso de la camara
+            Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
