@@ -17,7 +17,7 @@ namespace DemoCamera.Services
         public async Task Init()
         {
             await CrossMedia.Current.Initialize();
-
+            // Pedir permisos de acceso a camara y al almacenamiento del dispositivo
             cameraOK = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
             storageOK = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
 
@@ -29,7 +29,11 @@ namespace DemoCamera.Services
                 storageOK = status[Permission.Storage];
             }
         }
-
+        /**
+         * Hacer una foto con la camara
+         * 
+         * 
+         */
         public async Task<MediaFile> TakePhoto()
         {
             if (cameraOK == PermissionStatus.Granted
@@ -40,7 +44,7 @@ namespace DemoCamera.Services
                 var options = new StoreCameraMediaOptions
                 {
                     DefaultCamera = CameraDevice.Front, // Doesn't always work on Android, depends on Device
-                    AllowCropping = true, // UWP & iOS only,
+                   // AllowCropping = true, // UWP & iOS only,
                     PhotoSize = PhotoSize.Medium, // if Custom, you can set CustomPhotoSize = percentage_value 
                     CompressionQuality = 90,
                     Directory = "DemoCamara",
@@ -55,6 +59,10 @@ namespace DemoCamera.Services
             return null;
         }
 
+        /**
+         * Seleccionar una foto
+         * 
+         */
         public async Task<MediaFile> ChoosePhoto()
         {
             if (CrossMedia.Current.IsPickPhotoSupported)
@@ -80,6 +88,12 @@ namespace DemoCamera.Services
             return null;
         }
 
+        /**
+         * 
+         * Seleccionar un video
+         * 
+         * 
+         */
         public async Task<MediaFile> ChooseVideo()
         {
             if (CrossMedia.Current.IsPickVideoSupported)
