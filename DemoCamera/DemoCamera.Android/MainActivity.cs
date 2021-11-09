@@ -17,6 +17,9 @@ namespace DemoCamera.Droid
             // Inicializar el plugin
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
+            // Inicializar plugin para la reproducción de video y audio
+            MediaManager.CrossMediaManager.Current.Init();
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
