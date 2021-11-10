@@ -15,6 +15,8 @@ namespace DemoCamera.Views
         public MenuView()
         {
             InitializeComponent();
+            // Navegar entre las diferentes vistas
+            BindingContext = new ViewModels.MenuViewModel(Navigation);
         }
     }
 }
