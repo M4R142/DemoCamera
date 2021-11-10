@@ -10,7 +10,9 @@ namespace DemoCamera
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            //MainPage = new MainPage();
+            // Indicar la pagina de inicio
+            MainPage = new NavigationPage(new Views.MenuView());
         }
 
         protected override void OnStart()
